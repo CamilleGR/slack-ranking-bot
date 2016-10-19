@@ -14,5 +14,8 @@
   "license": "BSD",
   "bugs": {
     "url": "https://github.com/CamilleGR/slack-ranking-bot/issues"
+  },
+  "dependencies": {
+    "slackbots": "~0.5.3"
   }
 }
