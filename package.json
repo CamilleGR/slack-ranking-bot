@@ -4,8 +4,8 @@
   "description": "Bot for slack who analyse messages and reaction to attribute user rank",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js",
-    "start": "LOG_LEVEL='debug' node index.js"	  
+    "test_reacMng": "node tests/test-reacMng.js",
+    "start": "LOG_LEVEL='debug' node app/index.js"	  
   },
   "repository": {
     "type": "git",
