@@ -4,7 +4,7 @@ Bot who assign rank and make statistics on messages and reactions posted on your
 ## Install the bot
 
 to install the bot, you have to create a config.js file in the root directory :
-'''
+```
 exports.data = {
   slackToken : slack_token,
   botName : 'cheo',
@@ -13,4 +13,4 @@ exports.data = {
                       'id2',
                       ]
 }
-'''
+```
