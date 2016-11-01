@@ -4,7 +4,8 @@
   "description": "Bot for slack who analyse messages and reaction to attribute user rank",
   "main": "index.js",
   "scripts": {
-    "test": "node index.js"
+    "test": "node index.js",
+    "start": "LOG_LEVEL='debug' node index.js"	  
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,7 @@
   },
   "dependencies": {
     "slack": "~7.7.3",
-    "mongodb": "~2.2.11"
+    "mongodb": "~2.2.11",
+    "winston": "~2.2.0"
   }
 }

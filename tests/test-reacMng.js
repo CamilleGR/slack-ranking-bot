@@ -33,7 +33,6 @@ MongoClient.connect(config.dbUrl, function(err, db) {
   reacMng.getReaction(db,"partyparrot")
   .then(function(test){console.log("getReaction(partyparrot)= ", test)})
   .catch(function(err){console.log(err)})
-
   reacMng.addReactionPoint(db,'vnr','borey')
   .then(function(test){console.log('Borey dans le rer c : ', test)})
   .catch(function(err){console.log(err)})
