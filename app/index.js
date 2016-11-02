@@ -21,7 +21,7 @@ bot.reaction_added(function(data){
     MongoClient.connect(config.dbUrl, function(err, db) {
       winston.debug('NEW REACTION CATCHED IN A LISTENED CHANNEL')
       assert.equal(err,null)
-      reacMng.addReactionPoint(db,data.reaction,data.user)
+      reacMng.addReactionPoint(db,data.reaction,data.item_user)
       .then(function(userReactionAdded){
         winston.debug('ADD NEW REACTION '+data.reaction+' for user '+data.user+'\nsuccess ? '+userReactionAdded);
       })
