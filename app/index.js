@@ -5,7 +5,7 @@ const MongoClient = require('mongodb').MongoClient
 const assert = require('assert')
 const reacMng = require('../lib/reactionManager.js')
 const winston = require('winston')
-const commands = require('../lib/commands.js')
+const commandHandler = require('../lib/commandHandler.js')
 winston.level = process.env.LOG_LEVEL
 
 
@@ -34,19 +34,7 @@ bot.reaction_added(function(data){
 
 //When you send a mesage to cheo
 bot.message(function(data,err){
-    var matches = commands.regex_stat.exec(data.text)
-    if(matches !== null && matches[0] !== ''){
-
-      if(matches[2]==='emoji')
-          MongoClient.connect(config.dbUrl, function(err, db) {
-            reacMng.getReaction(db,matches[3]).then(function(reaction){
-              slack.chat.postMessage(
-                  {token:config.slackToken, channel:data.channel, text:JSON.stringify(reaction), as_user:true}
-                  , function(err,data){
-                    winston.error(err)
-                    winston.debug(data)
-                  })
-            })
-          })
-        }
+  if(data.text.startWith('cheo') || data.text.startWith('Cheo'))
+  if(data !== null && err === null) commandHandler.handler(data)
+  else winston.error(err)
 })
