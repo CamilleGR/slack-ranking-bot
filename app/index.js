@@ -23,7 +23,7 @@ bot.reaction_added(function(data){
       assert.equal(err,null)
       reacMng.addReactionPoint(db,data.reaction,data.item_user)
       .then(function(userReactionAdded){
-        winston.debug('ADD NEW REACTION '+data.reaction+' for user '+data.user+'\nsuccess ? '+userReactionAdded);
+        winston.debug('ADD NEW REACTION '+data.reaction+' for user '+data.item_user+'\nsuccess ? '+userReactionAdded);
       })
       .catch(function(err){winston.log('ERROR',err)})
     })
