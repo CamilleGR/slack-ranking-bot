@@ -34,7 +34,10 @@ bot.reaction_added(function(data){
 
 //When you send a mesage to cheo
 bot.message(function(data,err){
-  if(data.text.startWith('cheo') || data.text.startWith('Cheo'))
-  if(data !== null && err === null) commandHandler.handler(data)
-  else winston.error(err)
+  if(data !== null){
+    if(data.text.indexOf('cheo')===0 || data.text.indexOf('Cheo') === 0) commandHandler.handler(data)
+    }
+    else{
+       winston.error(err)
+     }
 })
