@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test_reacMng": "node tests/test-reacMng.js",
-    "start": "LOG_LEVEL='debug' node app/index.js"	  
+    "start": "LOG_LEVEL='debug' node app/index.js"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   "dependencies": {
     "slack": "~7.7.3",
     "mongodb": "~2.2.11",
-    "winston": "~2.2.0"
+    "winston": "~2.2.0",
+    "es6-promise": "~4.0.5"
   }
 }

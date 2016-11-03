@@ -7,9 +7,6 @@ const reacMng = require('../lib/reactionManager.js')
 const winston = require('winston')
 const commandHandler = require('../lib/commandHandler.js')
 
-process.on('uncaughtException', function (err) {
-  winston.error('UNCAUGHT EXCEPTION \n ' +err);
-});
 
 
 winston.level = process.env.LOG_LEVEL
