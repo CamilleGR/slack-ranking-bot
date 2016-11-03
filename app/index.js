@@ -34,10 +34,10 @@ bot.reaction_added(function(data){
 
 //When you send a mesage to cheo
 bot.message(function(data,err){
-  if(data !== null){
+  if(data !== null && data.text !== null){
     if(data.text.indexOf('cheo')===0 || data.text.indexOf('Cheo') === 0) commandHandler.handler(data)
     }
     else{
-       winston.error(err)
+       winston.warn("Message with no data.text has been captured")
      }
 })
