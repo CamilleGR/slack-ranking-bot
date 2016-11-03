@@ -19,7 +19,7 @@ bot.listen({token:config.slackToken});
 
 
 bot.reaction_added(function(data){
-  if(config.listenedChannels.indexOf(data.item.channel)<0){
+  if(data.item.channel == null && config.listenedChannels.indexOf(data.item.channel)<0){
     winston.debug('REACTION CATCHED IN UNLISTENNED CHANNEL')
   }
   else
@@ -40,7 +40,7 @@ bot.reaction_added(function(data){
 
 //When you send a mesage to cheo
 bot.message(function(data,err){
-  if(data !== null && data.text !== null){
+  if(data != null && data.text != null){
     if(data.text.indexOf('cheo')===0 || data.text.indexOf('Cheo') === 0) commandHandler.handler(data)
     }
     else{
