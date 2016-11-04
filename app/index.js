@@ -17,11 +17,15 @@ bot.listen({token:config.slackToken});
 
 bot.reaction_added(function(data){
   if(data.item.channel == null && config.listenedChannels.indexOf(data.item.channel)<0){
-    winston.debug('REACTION CATCHED IN UNLISTENNED CHANNEL')
+    winston.debug('REACTION_ADDED CATCHED IN UNLISTENNED CHANNEL')
   }
   else
   {
     MongoClient.connect(config.dbUrl, function(err, db) {
+      if(err != null){
+        winston.error(err)
+        return;
+      }
       winston.debug('NEW REACTION CATCHED IN A LISTENED CHANNEL')
       assert.equal(err,null)
       reacMng.addReactionPoint(db,data.reaction,data.item_user)
@@ -33,6 +37,27 @@ bot.reaction_added(function(data){
   }
 })
 
+bot.reaction_removed(function(data){
+  if(data.item.channel == null && config.listenedChannels.indexOf(data.item.channel)<0){
+    winston.debug('REACTION_REMOVED CATCHED IN UNLISTENNED CHANNEL')
+  }
+  else
+  {
+    MongoClient.connect(config.dbUrl, function(err, db) {
+      if(err != null){
+        winston.error(err)
+        return;
+      }
+      winston.debug('NEW REACTION CATCHED IN A LISTENED CHANNEL')
+      assert.equal(err,null)
+      reacMng.decReactionPoint(db,data.reaction,data.item_user)
+      .then(function(reactionPointDec){
+        winston.debug('ADD NEW REACTION '+data.reaction+' for user '+data.item_user+'\nsuccess ? '+reactionPointDec);
+      })
+      .catch(function(err){winston.log('ERROR',err)})
+    })
+  }
+})
 
 
 //When you send a mesage to cheo
