@@ -37,13 +37,13 @@ bot.reaction_added((data) => {
   }
 })
 
-bot.reaction_removed(function(data){
+bot.reaction_removed((data) =>{
   if(data.item.channel == null && config.listenedChannels.indexOf(data.item.channel)<0){
     winston.debug('REACTION_REMOVED CATCHED IN UNLISTENNED CHANNEL')
   }
   else
   {
-    MongoClient.connect(config.dbUrl, function(err, db) {
+    MongoClient.connect(config.dbUrl, (err, db) =>{
       if(err != null){
         winston.error(err)
         return;
@@ -51,10 +51,10 @@ bot.reaction_removed(function(data){
       winston.debug('NEW REACTION CATCHED IN A LISTENED CHANNEL')
       assert.equal(err,null)
       reacMng.decReactionPoint(db,data.reaction,data.item_user)
-      .then(function(reactionPointDec){
+      .then((reactionPointDec)=>{
         winston.debug('ADD NEW REACTION '+data.reaction+' for user '+data.item_user+'\nsuccess ? '+reactionPointDec);
       })
-      .catch(function(err){winston.log('ERROR',err)})
+      .catch((err)=>{winston.log('ERROR',err)})
     })
   }
 })
