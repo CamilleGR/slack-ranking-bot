@@ -1,6 +1,6 @@
 # slack-ranking-bot
 Bot who assign rank and make statistics on messages and reactions posted on your slack's team. For now, you can askthings to the bot thanks to some commands who are detected by a regex defined in lib/commands.
-I personnaly deploy the bot in production on a VPS with 1 vCore and 2GB RAM and it work correctly ;)
+I personnaly deploy the bot in production on a VPS with UBUNTU server 16.04, 1 vCore and 2GB RAM and it work correctly ;)
 
 ## Install the bot
 
@@ -10,24 +10,15 @@ The bot require a mongodb database and a config file described in the following 
 exports.data = {
   slackToken : slack_token,
   botName : 'cheo',
-  dbUrl : database_ip,
+  dbUrl : mongodb://db:27017/cheo,
   listenedChannels : ['id1',
                       'id2']
 }
 ```
-* install with npm
-```
-npm install
-```
+# Build the docker image
 
-## Start the bot
+docker-compose build
 
-* With DEBUG logs
-```
-npm start
-```
+# Run the container
 
-* Start bot in production
-```
-nohup node app/index.js &
-```
+docker-compose up
