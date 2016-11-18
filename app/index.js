@@ -28,11 +28,13 @@ bot.reaction_added((data) => {
       }
       winston.debug('NEW REACTION CATCHED IN A LISTENED CHANNEL')
       assert.equal(err,null)
-      reacMng.addReactionPoint(db,data.reaction,data.item_user)
-      .then((userReactionAdded)=>{
-        winston.debug('ADD NEW REACTION '+data.reaction+' for user '+data.item_user+'\nsuccess ? '+userReactionAdded);
-      })
-      .catch((err)=>{winston.log('ERROR',err)})
+      if(data.user!==data.item_user){
+        reacMng.addReactionPoint(db,data.reaction,data.item_user)
+        .then((userReactionAdded)=>{
+          winston.debug('ADD NEW REACTION '+data.reaction+' for user '+data.item_user+'\nsuccess ? '+userReactionAdded);
+        })
+        .catch((err)=>{winston.log('ERROR',err)})
+      }
     })
   }
 })
@@ -48,13 +50,17 @@ bot.reaction_removed((data) =>{
         winston.error(err)
         return;
       }
-      winston.debug('NEW REACTION CATCHED IN A LISTENED CHANNEL')
+      winston.debug('NEW REACTION REMOVED CATCHED IN A LISTENED CHANNEL')
       assert.equal(err,null)
-      reacMng.decReactionPoint(db,data.reaction,data.item_user)
-      .then((reactionPointDec)=>{
-        winston.debug('ADD NEW REACTION '+data.reaction+' for user '+data.item_user+'\nsuccess ? '+reactionPointDec);
-      })
-      .catch((err)=>{winston.log('ERROR',err)})
+
+        if(data.item_user!==data.user){
+          reacMng.decReactionPoint(db,data.reaction,data.item_user)
+          .then((reactionPointDec)=>{
+          winston.debug('DEC REACTION '+data.reaction+' for user '+data.item_user+'\nsuccess ? '+reactionPointDec);
+          })
+          .catch((err)=>{winston.log('ERROR',err)})
+        }
+
     })
   }
 })
