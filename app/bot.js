@@ -1,5 +1,5 @@
 const slack = require('slack')
-const config = require('../config.js').data
+const config = require('../config/config.js').data
 const bot = slack.rtm.client()
 const MongoClient = require('mongodb').MongoClient
 const assert = require('assert')
