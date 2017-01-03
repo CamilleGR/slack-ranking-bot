@@ -4,3 +4,4 @@ dbFormat
 cronJobs
 npm-debug.log
 redeploy.sh
+config
