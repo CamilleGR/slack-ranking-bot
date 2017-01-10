@@ -5,6 +5,9 @@ db:
   volumes :
     - /root/data
   command: "--smallfiles --logpath=/dev/null"
+  environment: 
+        MONGODB_USER: "admin"
+        MONGODB_PASS: "admin"
 bot:
   build: .
   command: npm start
