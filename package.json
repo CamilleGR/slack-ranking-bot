@@ -2,7 +2,7 @@
   "name": "slack-ranking-bot",
   "version": "0.0.0",
   "description": "Bot for slack who analyse messages and reaction to attribute user rank",
-  "main": "index.js",
+  "main": "app/index.js",
   "scripts": {
     "start": "LOG_LEVEL='debug' node app/index.js"
   },
@@ -10,13 +10,14 @@
     "type": "git",
     "url": "git://github.com/CamilleGR/slack-ranking-bot.git"
   },
-  "author": "Camill Gerin-Roze",
+  "author": "Camille Gerin-Roze",
   "license": "BSD",
   "bugs": {
     "url": "https://github.com/CamilleGR/slack-ranking-bot/issues"
   },
   "dependencies": {
     "cheerio": "^0.22.0",
+    "express": "^4.14.0",
     "mongodb": "~2.2.11",
     "node-cron": "^1.1.2",
     "slack": "~7.7.3",
