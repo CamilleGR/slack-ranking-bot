@@ -33,7 +33,7 @@ app.get('/emoji/stats/:name', (req,res) =>
     .catch(e => winston.error(e))
 )
 
-app.use('/', (req,res) =>res.sendFile('home.html',{root:__dirname+'/../webapp'}))
+app.use('/', (req,res) =>res.send("Cheo is god, cheo is everywhere, cheo see you, fear cheo"))
 
 
 app.listen(8080);
